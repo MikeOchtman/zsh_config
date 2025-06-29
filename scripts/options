@@ -1,0 +1,19 @@
+#! /usr/bin/zsh
+
+setopt nobeep
+setopt autocd
+setopt extendedglob
+setopt nomatch
+setopt notify
+setopt always_to_end
+setopt list_rows_first
+setopt numeric_glob_sort
+setopt hist_find_no_dups
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt check_jobs
+setopt check_running_jobs
+
+
+bindkey -e
+
