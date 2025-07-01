@@ -4,6 +4,8 @@
 alias ls="ls --color=auto --group-directories-first"
 alias lsl="ls -lath"
 
+alias q=exit
+
 alias rmi="rm -i"
 alias cpi="cp -i"
 alias rmdiri="rmdir -i"

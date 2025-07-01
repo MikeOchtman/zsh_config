@@ -1,24 +1,32 @@
 #! /usr/bin/zsh
 
-local user="%F{cyan}<%n>%f"
-local pwdir="%B%F{green}%2~%f%b"
-local fulldir="%B%F{green}%~%f%b"
-local rlo="%(?:%F{green}✔%f:%B%F{red}(%?✗%)%f%b)"
-local usertype="%B%F{white}%#%f%b"
-local timenow="%F{yellow}%*%f"
-
+local user='%F{cyan}<%n>%f'
+local pwdir='%B%F{green}%2~%f%b'
+local fulldir='%B%F{green}%~%f%b'
+local rlo='%(?:%F{green}✔%f:%B%F{red}(%?✗%)%f%b)'
+local usertype='%B%F{white}%#%f%b'
+local timenow='%F{yellow}%*%f'
+local iconroot=' '
+local iconuser=' '
+local usericon='%(#:%F{186}  %f:%F{042}%f)'
+gitbr () {
+    git branch 2> /dev/null && git branch | print
+}
 # called just before each command is executed
 # preexec() {
-#       echo "running preexec()"
+#       echo 'running preexec()'
 #    Do all the pre-command jobs, like logging, etc
 #}
 
 # called just before displaying prompt
 # precmd() {
-#    echo "running precmd()
+#    echo 'running precmd()
+#
 #    echo use to set up prompt variables
 #}
 
-PROMPT="${rlo} ${pwdir} ${usertype} "
-RPROMPT="${timenow} ${fulldir} ${user}"
+
+
+PROMPT='${rlo} ${pwdir} ${usericon} '
+RPROMPT='${timenow} ${fulldir} %F{209}[$(gitbr)]%f ${user}'
 
