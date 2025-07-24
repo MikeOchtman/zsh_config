@@ -5,16 +5,17 @@ gitbr () {
     git branch 2> /dev/null && git branch | print
 }
 
+autoload -Uz colors && colors
 
-local user='%F{cyan}<%n>%f'
-local shortdir='%B%F{green}%2~%f%b'
+local user='%F{6}<%n>%f'            # teal
+local shortdir='%B%F{72}%2~%f%b'    # cadet blue
 local fulldir='%B%F{green}%~%f%b'
 local rlo='%(?:%F{green}✔%f:%B%F{red}(%?✗%)%f%b)'
 local usertype='%B%F{white}%#%f%b'
 local timenow='%F{yellow}%*%f'
 local iconroot=' '
 local iconuser=' '
-local usericon='%(#:%F{186}  %f:%F{042} %f)'
+local usericon='%(#:%F{186}  %f:%F{076} %f)'  # root='light gold' user='chartreuse3'
 local gitbranch=''
 
 # called just before each command is executed
