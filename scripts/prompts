@@ -6,16 +6,17 @@ gitbr () {
 }
 
 autoload -Uz colors && colors
-
+# use Ctrl-Shift-u <char code> <cr> to enter unicode char
+#
 local user='%F{6}<%n>%f'            # teal
 local shortdir='%B%F{72}%2~%f%b'    # cadet blue
-local fulldir='%B%F{green}%~%f%b'
+local fulldir='%B%F{72}%~%f%b'
 local rlo='%(?:%F{green}✔%f:%B%F{red}(%?✗%)%f%b)'
 local usertype='%B%F{white}%#%f%b'
 local timenow='%F{yellow}%*%f'
-local iconroot=' '
-local iconuser=' '
-local usericon='%(#:%F{186}  %f:%F{076} %f)'  # root='light gold' user='chartreuse3'
+local iconroot=' '
+local iconuser=' '
+local usericon='%(#:%F{green} %f:%F{6}  %f)'  # root='light gold' user='chartreuse3'
 local gitbranch=''
 
 # called just before each command is executed

@@ -4,7 +4,7 @@
 alias ls="ls --color=auto --group-directories-first"
 alias lsl="ls -lath"
 alias lsf="lsl | fzf"
-
+alias cat="batcat"
 alias q=exit
 
 alias rmi="rm -i"
