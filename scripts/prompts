@@ -16,7 +16,7 @@ local usertype='%B%F{white}%#%f%b'
 local timenow='%F{yellow}%*%f'
 local iconroot=' '
 local iconuser=' '
-local usericon='%(#:%F{green} %f:%F{6}  %f)'  # root='light gold' user='chartreuse3'
+local usericon='%(#:%F{green} %f:%F{6} %f)'  # root='light gold' user='chartreuse3'
 local gitbranch=''
 
 # called just before each command is executed

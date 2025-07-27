@@ -1,8 +1,8 @@
 #! /usr/bin/zsh
 
-
-alias ls="ls --color=auto --group-directories-first"
-alias lsl="ls -lath"
+lias ls="eza"
+alias ls="eza --color=auto --group-directories-first"
+alias lsl="eza -la"
 alias lsf="lsl | fzf"
 alias cat="batcat"
 alias q=exit
