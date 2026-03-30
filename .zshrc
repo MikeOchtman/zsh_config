@@ -1,13 +1,12 @@
-#! /usr/bin/zsh
-
+#!/usr/bin/env zsh
 
 source $ZDOTDIR/scripts/history
-
-
 
 fpath=($ZDOTDIR/plugins/zsh-completions/src $fpath)
 
 source $ZDOTDIR/scripts/options
+source $ZDOTDIR/scripts/autoloads
+
 # load plugins
 source $ZDOTDIR/completion/completion.zsh
 source $ZDOTDIR/plugins/zsh-completions/zsh-completions.plugin.zsh
@@ -18,11 +17,7 @@ source <(fzf --zsh)
 
 eval "$(zoxide init zsh)"
 
-
 source $ZDOTDIR/aliases/aliases.zsh
 
 source $ZDOTDIR/scripts/prompts
-
-
-
 

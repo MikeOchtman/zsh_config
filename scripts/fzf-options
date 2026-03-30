@@ -1,4 +1,4 @@
 #! /usr/bin/zsh
 
-export FZF_DEFAULT_OPTS="--layout reverse --inline-info --height -40% --border"
-
+#export FZF_DEFAULT_OPTS="--layout reverse --inline-info --height -40% --border"
+export FZF_DEFAULT_OPTS="--layout reverse --inline-info --height -40% --border --preview-window=right:60%:wrap --preview 'bat --style=full --color=always {}'"   

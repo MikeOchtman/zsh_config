@@ -1,0 +1,7 @@
+#!/usr/env zsh
+# autoloaded functions
+
+autoload -U edit-command-line;
+zle -N edit-command-line;
+bindkey '^Fc' edit-command-line;
+

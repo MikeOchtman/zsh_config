@@ -5,6 +5,10 @@ gitbr () {
     git branch 2> /dev/null && git branch | print
 }
 
+decode-signal () {
+  print "sig"
+}
+
 autoload -Uz colors && colors
 # use Ctrl-Shift-u <char code> <cr> to enter unicode char
 #
@@ -28,6 +32,8 @@ local gitbranch=''
 # called just before displaying prompt
  precmd() {
 #    echo 'running precmd()'
+    err=%?
+    signal="$(decode-signal)"
     gitbranch="%F{209}[$(gitbr)]%f"
 #    echo use to set up prompt variables
 }
