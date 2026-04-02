@@ -18,7 +18,19 @@ pwd-listing() {
   eza --header --long --git --classify --sort=size --color=always | head -n 10
   local dircount=$(find . -maxdepth 1 -type d | wc -l)
   local filecount=$(find . -maxdepth 1 -type f | wc -l)
-  echo "there are $dircount directories and $filecount files\n"
+  local dir_string
+  if [[ $dircount == 1 ]]; then
+    dir_string="there is $dircount directory"
+  else
+    dir_string="there are $dircount directories"
+  fi
+  local file_string
+  if [[ $filecount == 1 ]]; then
+    file_string="and $filecount file only"
+  else
+    file_string="and $filecount files"
+  fi
+  echo "$dir_string $file_string"
 }
 
 
@@ -30,5 +42,5 @@ check-directory() {
 }
 
 
-chpwd_functions+=(check-directory)
+(( $+functions[check-directory] )) && add-zsh-hook chpwd check-directory
 

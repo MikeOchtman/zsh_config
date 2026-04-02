@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 # fzf features
-echo "doing fzf-options"
 
 # set up the preview string for fzf
 local f_files="([[ -f {-1} ]] && batcat --color=always --line-range 1:30 {-1})"
@@ -8,9 +7,6 @@ local f_dirs="([[ -d {-1} ]] && tree -CL 2 {-1})"
 local f_other="head -n 20 {-1}"
 
 local prev="$f_files || $f_dirs || $f_other"
-
-echo $prev
-
 
 export FZF_DEFAULT_OPTS="--smart-case --exact --ansi --style=full --height=20% \
 --layout=reverse-list --border=rounded --highlight-line --multi \
