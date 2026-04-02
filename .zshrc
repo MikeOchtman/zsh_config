@@ -13,11 +13,16 @@ source $ZDOTDIR/plugins/zsh-completions/zsh-completions.plugin.zsh
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-source <(fzf --zsh)
 
 eval "$(zoxide init zsh)"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source $ZDOTDIR/scripts/fzf-options
+
+source $ZDOTDIR/scripts/functions
 
 source $ZDOTDIR/aliases/aliases.zsh
 
 source $ZDOTDIR/scripts/prompts
+
 
