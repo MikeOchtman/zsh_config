@@ -1,4 +1,31 @@
-#!/etc/env zsh
+#!/usrbin/env zsh
+
+# include guard
+[[ -z "${ZSH_FUNCTIONS_SOURCED+x}" ]] || return
+readonly ZSH_FUNCTIONS_SOURCED=1
+
+
+
+# extract the current git branch and count the number of modified and deleted files
+function gitbranch {
+  local br=''
+  br=$(git symbolic-ref --short HEAD 2>/dev/null)
+  if [ -n "$br" ]; then
+    local statstring=$(git status 2> /dev/null)
+    local mod=$(print $statstring | grep modified: | wc -l)
+    local del=$(print $statstring | grep deleted: | wc -l)
+    br+=": m "
+    br+=$mod
+    br+=" d "
+    br+=$del
+  fi
+  echo "%F{yellow}[$br]%f"
+}
+
+
+
+
+
 
 # useful function definitions 
 # hook functions 
@@ -43,4 +70,31 @@ check-directory() {
 
 
 (( $+functions[check-directory] )) && add-zsh-hook chpwd check-directory
+
+
+####################################################################################
+#other functions
+#
+
+# Stolen from oh-my-zsh with some additions 
+# Get the value of an alias.
+#
+# Arguments:
+#    1. alias - The alias to get its value from
+# STDOUT:
+#    The value of alias $1 (if it has one).
+# Return value:
+#    0 if the alias was found,
+#    1 if it does not exist
+#
+function what_alias() {
+    (( $+aliases[$1] )) && echo $aliases[$1]
+}
+
+
+function spoof-error () {
+# returns the same number as the argument
+# for testing script that react to %?
+  return $1
+}
 

@@ -1,45 +1,34 @@
 #! /usr/bin/zsh
 
-
-gitbr () {
-    git branch 2> /dev/null && git branch | print
-}
-
-decode-signal () {
-  print "sig"
-}
-
 autoload -Uz colors && colors
 # use Ctrl-Shift-u <char code> <cr> to enter unicode char
 #
+
+# load functions
+source $ZDOTDIR/zsh-functions/zsh-functions
+
 local user='%F{6}<%n>%f'            # teal
 local shortdir='%B%F{72}%2~%f%b'    # cadet blue
 local fulldir='%B%F{72}%~%f%b'
-local rlo='%(?:%F{green}✔%f:%B%F{red}(%?✗%)%f%b)'
 local usertype='%B%F{white}%#%f%b'
 local timenow='%F{yellow}%*%f'
-local iconroot=' '
-local iconuser=' '
 local usericon='%(#:%F{green} %f:%F{6} %f)'  # root='light gold' user='chartreuse3'
 local gitbranch=''
+local newline=$'\n'
+local signals=("1 HUP" "2 INT" "3 QUIT" "4 ILL" "5 TRAP" "6 ABRT" "7 BUS" "8 FPE" "9 KILL" "10 USR1" "11 SEGV" "12 USR2" "13 PIPE" "14 ALRM" \
+"15 TERM" "16 STKFLT" "17 CHLD" "18 CONT" "19 STOP" "20 TSTP" "21 TTIN" "22 TTOU" "23 URG" "24 XCPU" "25 XFSZ" "26 VTALRM" "27 PROF" "28 WINCH" \
+"29 POLL" "30 PWR" "31 SYS")
+
+typeset -a err
 
 # called just before each command is executed
-# preexec() {
-#       echo 'running preexec()'
-#    Do all the pre-command jobs, like logging, etc
-#}
-
 # called just before displaying prompt
  precmd() {
-#    echo 'running precmd()'
-    err=%?
-    signal="$(decode-signal)"
-    gitbranch="%F{209}[$(gitbr)]%f"
-#    echo use to set up prompt variables
+  err=($pipestatus)
 }
 
 
+PROMPT=' $err $signal $user $fulldir $(gitbranch) $newline󱞪 $usericon '
 
-PROMPT='${rlo} ${shortdir} ${usericon} '
-RPROMPT='${timenow} ${fulldir} ${gitbranch} ${user}'
+RPROMPT='${timenow}'
 

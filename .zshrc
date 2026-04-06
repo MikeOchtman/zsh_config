@@ -3,6 +3,7 @@
 source $ZDOTDIR/scripts/history
 
 fpath=($ZDOTDIR/plugins/zsh-completions/src $fpath)
+fpath=($ZDOTDIR/zsh-functions $fpath)
 
 source $ZDOTDIR/scripts/options
 source $ZDOTDIR/scripts/autoloads
@@ -18,8 +19,6 @@ eval "$(zoxide init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source $ZDOTDIR/scripts/fzf-options
-
-source $ZDOTDIR/scripts/functions
 
 source $ZDOTDIR/aliases/aliases.zsh
 

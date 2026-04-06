@@ -3,5 +3,9 @@
 
 autoload -U edit-command-line;
 zle -N edit-command-line;
+autoload -U zsh-functions;
+
+source $ZDOTDIR/zsh-functions/zsh-functions
+
 bindkey '^Fc' edit-command-line;
 
