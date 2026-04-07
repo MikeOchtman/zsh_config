@@ -7,18 +7,6 @@ autoload -Uz colors && colors
 # load functions
 source $ZDOTDIR/zsh-functions/zsh-functions
 
-local user='%F{6}<%n>%f'            # teal
-local shortdir='%B%F{72}%2~%f%b'    # cadet blue
-local fulldir='%B%F{72}%~%f%b'
-local usertype='%B%F{white}%#%f%b'
-local timenow='%F{yellow}%*%f'
-local usericon='%(#:%F{green} %f:%F{6} %f)'  # root='light gold' user='chartreuse3'
-local gitbranch=''
-local newline=$'\n'
-local signals=("1 HUP" "2 INT" "3 QUIT" "4 ILL" "5 TRAP" "6 ABRT" "7 BUS" "8 FPE" "9 KILL" "10 USR1" "11 SEGV" "12 USR2" "13 PIPE" "14 ALRM" \
-"15 TERM" "16 STKFLT" "17 CHLD" "18 CONT" "19 STOP" "20 TSTP" "21 TTIN" "22 TTOU" "23 URG" "24 XCPU" "25 XFSZ" "26 VTALRM" "27 PROF" "28 WINCH" \
-"29 POLL" "30 PWR" "31 SYS")
-
 typeset -a err
 
 # called just before each command is executed
@@ -28,7 +16,54 @@ typeset -a err
 }
 
 
-PROMPT=' $err $signal $user $fulldir $(gitbranch) $newline󱞪 $usericon '
+#function to look at the error code returned by previous command
+#or pipe of commands and examine each element
+#and extract signal names for functions that returned them, or the return code
+#of the failed commands
+#returns a simple  when the previous command fully succeeded
+parse-error () {
+  local str
+# first check that the error code is all zeroes
+# pull an array of unique values in $err
+# check for exactly 1 element and that element == 0
+
+  if [[ ${#${(u)err[@]}} ]] && [[ ${err[1]} -eq 0 ]]; then
+    # all zero.
+    str='%F{green}[]%f'
+  else
+  # otherwise we build a string of error codes and/or signal names
+  # with '|' symbols between 
+    local count=${#err[@]}
+    str='%B%F{red}['
+    for i in ${err[@]}; do
+      if [[ $i -gt 128 ]]; then
+        str+=$(kill -l $i)
+      else
+        str+="$i"
+      fi
+      if [[ count -gt 1 ]]; then
+        str+="|"
+      fi
+      (( count-- ))
+    done
+    str+=']%f%b'
+  fi
+  print "$str"
+}
+
+
+
+prompt-builder () {
+  local build="╭─"
+  build+=$(parse-error)
+  build+=" %F{magenta}${user}%f "
+  build+=" %F{cyan}${PWD/#$HOME/~}%f \n"
+  build+="╰─ $ "
+  echo "${build}"
+
+}
+
+PROMPT='$(prompt-builder)'
 
 RPROMPT='${timenow}'
 

@@ -2,7 +2,7 @@
 
 # include guard
 [[ -z "${ZSH_FUNCTIONS_SOURCED+x}" ]] || return
-readonly ZSH_FUNCTIONS_SOURCED=1
+ZSH_FUNCTIONS_SOURCED=1
 
 
 
@@ -23,7 +23,10 @@ function gitbranch {
 }
 
 
-
+#returns a colorised version of $PWD
+function this-directory {
+  echo "%B%F{magenta}%~%f%b"
+}
 
 
 
@@ -95,6 +98,6 @@ function what_alias() {
 function spoof-error () {
 # returns the same number as the argument
 # for testing script that react to %?
-  return $1
+  return $@
 }
 
