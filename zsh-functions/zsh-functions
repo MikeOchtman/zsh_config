@@ -1,4 +1,4 @@
-#!/usrbin/env zsh
+#!/usr/bin/env zsh
 
 # include guard
 [[ -z "${ZSH_FUNCTIONS_SOURCED+x}" ]] || return
@@ -71,7 +71,7 @@ check-directory() {
   check-git-status
 }
 
-
+autoload -U add-zsh-hook
 (( $+functions[check-directory] )) && add-zsh-hook chpwd check-directory
 
 
