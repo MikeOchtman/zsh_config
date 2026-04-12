@@ -11,3 +11,4 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey '^ ' autosuggest_accept
 
 
+
