@@ -13,6 +13,8 @@ typeset -a err
 # called just before displaying prompt
  precmd() {
   err=($pipestatus)
+  RPROMPT='%F{green}$(date +%T)%f'
+
 }
 
 
@@ -53,17 +55,17 @@ parse-error () {
 
 
 
-prompt-builder () {
+
+promptbuilder () {
   local build="╭─"
   build+=$(parse-error)
-  build+=" %F{magenta}${user}%f "
+  build+=$(gitbranch)
+  build+=" %F{magenta}%n%f "
   build+=" %F{cyan}${PWD/#$HOME/~}%f \n"
   build+="╰─ $ "
   echo "${build}"
 
 }
 
-PROMPT='$(prompt-builder)'
-
-RPROMPT='${timenow}'
+PROMPT='$(promptbuilder)'
 

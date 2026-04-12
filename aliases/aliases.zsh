@@ -15,19 +15,3 @@ alias z..="z .."
 
 alias dir="tree -aC -L 2"
 
-# alias fzfp="eza -la | fzf --style full --preview  \
-#  'batcat --line-range 1:10 --wrap never "$(awk {print \$NF} <<< {})"'"
-
-# alias fzfp="eza -lA | fzf --preview 'batcat --line-range 1:30 --wrap never {-1}'"
-# alias look="find . -maxdepth 1 -type f | fzf --preview 'batcat --line-range 1:30 --wrap never {}'"
-
-
-export FZF_DEFAULT_OPTS=" \
-                         --layout reverse \
-                         --exact \
-                         --multi \
-                         --inline-info \
-                         --height -50% \
-                         --border \
-                         "
-
