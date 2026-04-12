@@ -14,10 +14,14 @@ function gitbranch {
     local statstring=$(git status 2> /dev/null)
     local mod=$(print $statstring | grep modified: | wc -l)
     local del=$(print $statstring | grep deleted: | wc -l)
-    br+=": m "
-    br+=$mod
-    br+=" d "
-    br+=$del
+    if (( mod + del == 0 )); then
+      br+="clean"
+    else
+      br+=": m "
+     br+=$mod
+     br+=" d "
+     br+=$del
+    fi
   fi
   echo "%F{yellow}[$br]%f"
 }
