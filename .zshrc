@@ -5,6 +5,7 @@ typeset -Ug fpath=($ZDOTDIR/plugins/zsh-completions/src $ZDOTDIR/zsh-functions $
 source $ZDOTDIR/scripts/autoloads
 source $ZDOTDIR/scripts/zsh-history
 source $ZDOTDIR/scripts/options
+source $ZDOTDIR/zsh-functions/zsh-functions
 
 # 1. Load completions first (fpath is already set above)
 source $ZDOTDIR/plugins/zsh-completions/zsh-completions.plugin.zsh

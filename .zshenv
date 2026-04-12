@@ -24,10 +24,4 @@
 # where are the zsh config files kept?
 # set in /etc/zsh/zshenv:  export ZDOTDIR="$HOME/.config/zsh"
 
-# Set up shell history in $ZDOTDIR
-export HISTFILE="$ZDOTDIR/.zhistory"
-export HISTSIZE=10000
-export SAVEHIST=10000
-
-setopt HIST_SAVE_NO_DUPS
 
