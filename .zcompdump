@@ -2055,6 +2055,7 @@ zle -C _read_comp .complete-word _read_comp
 bindkey '^X^R' _read_comp
 bindkey '^X?' _complete_debug
 bindkey '^XC' _correct_filename
+bindkey '^Xa' _expand_alias
 bindkey '^Xc' _correct_word
 bindkey '^Xd' _list_expansions
 bindkey '^Xe' _expand_word

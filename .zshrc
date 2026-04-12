@@ -1,10 +1,9 @@
 #!/usr/bin/env zsh
 
-typeset -U fpath
-fpath=($ZDOTDIR/plugins/zsh-completions/src $ZDOTDIR/zsh-functions $fpath)
+typeset -Ug fpath=($ZDOTDIR/plugins/zsh-completions/src $ZDOTDIR/zsh-functions $fpath)
 
 source $ZDOTDIR/scripts/autoloads
-source $ZDOTDIR/scripts/zsh-history
+source $ZDOTDIR/scripts/history
 source $ZDOTDIR/scripts/options
 
 # 1. Load completions first (fpath is already set above)
