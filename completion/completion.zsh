@@ -58,7 +58,7 @@ zstyle ':completion:*' complete true
 
 zle -C alias-expension complete-word _generic
 bindkey '^Xa' alias-expension
-zstyle ':completion:alias-expension:*' completer _expand_alias
+zstyle ':completion:alias-expansion:*' completer _expand_alias
 
 # Use cache for commands which use it
 

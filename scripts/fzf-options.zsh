@@ -30,3 +30,11 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/"'
 #bat_cmdi Join array into a single string for the environment variable
 export FZF_DEFAULT_OPTS="--layout reverse --ansi --height=80% ${(j: :)fzf_opts}"
 
+
+# improve zoxide zi and fzf integration above the default
+zi () {
+  local dir
+  dir=$(zoxide query -l | fzf --preview 'tree -C {} | head -20')
+  [ -n "$dir" ] && cd "$dir"
+}
+
