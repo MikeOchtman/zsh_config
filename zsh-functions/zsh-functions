@@ -7,7 +7,7 @@ ZSH_FUNCTIONS_SOURCED=1
 
 
 # extract the current git branch and count the number of modified and deleted files
-function gitbranch {
+function gitbranch() {
   local br=''
   br=$(git symbolic-ref --short HEAD 2>/dev/null)
   if [ -n "$br" ]; then
@@ -28,7 +28,7 @@ function gitbranch {
 
 
 #returns a colorised version of $PWD
-function this-directory {
+function this-directory() {
   echo "%B%F{magenta}%~%f%b"
 }
 
