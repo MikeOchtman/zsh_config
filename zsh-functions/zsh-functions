@@ -105,3 +105,28 @@ function spoof-error () {
   return $@
 }
 
+function fedora-update() {
+  echo "==> Updating Fedora systen packages..."
+  sudo dnf upgrade --refresh -y || return 1
+
+  if command -v flatpak >/dev/null 2>&1; then
+    echo "updating Flatpak packages..."
+    flatpak update -y
+    echo "cleaning up unused <flatpaks..."
+    flatpak uninstall --unused -y
+  fi
+  echo "Updates completed."
+}  
+
+
+function start-idf() {
+  podman run --rm -it --userns=keep-id \
+    -v $PWD:/project:z -w /project \
+    -v idf-ccache:/ccache \
+    -e CCACHE_DIR=/ccache \
+    -e IDF_CCACHE_ENABLE=1 \
+    -u $(id -u) -e HOME=/tmp \
+    espressif/idf:latest bash
+  }
+
+
