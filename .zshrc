@@ -1,22 +1,34 @@
 #!/usr/bin/env zsh
 
+# find out what distro we're running on
+if [[ -f /etc/os-release ]]; then
+  source /etc/os-release
+  export DISTRO=$NAME
+  export DISTRO_VERSION=$VERSION_ID
+  export DISTRO_CODENAME=$VERSION_CODENAME
+  export DISTRO_PRETTY_NAME=$PRETTY_NAME
+  export DISTRO_ID=$ID
+fi  
+
+
 typeset -Ug fpath=($ZDOTDIR/plugins/zsh-completions/src $ZDOTDIR/zsh-functions $fpath)
 
 source $ZDOTDIR/scripts/autoloads
 source $ZDOTDIR/scripts/zsh-history
 source $ZDOTDIR/scripts/options
-source $ZDOTDIR/zsh-functions/zsh-functions
+#source $ZDOTDIR/zsh-functions/zsh-functions
 eval "$(dircolors -b $ZDOTDIR/scripts/dircolors)"
 
 # 1. Load completions first (fpath is already set above)
 #source $ZDOTDIR/plugins/zsh-completions/zsh-completions.plugin.zsh
 source $ZDOTDIR/completion/completion.zsh
 
-# 2. Initialize external interactive tools
+# 2. Load your own aliases and prompts
+source $ZDOTDIR/aliases/aliases.zsh
+# 3. Initialize external interactive tools
 eval "$(zoxide init zsh)"
 source $ZDOTDIR/scripts/fzf-options.zsh
-# 3. Load your own aliases and prompts
-source $ZDOTDIR/aliases/aliases.zsh
+
 source $ZDOTDIR/scripts/prompts
 # 4. Load Autosuggestions (and its configurations)
 source $ZDOTDIR/scripts/suggestion-options.zsh

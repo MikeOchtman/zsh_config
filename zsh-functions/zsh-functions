@@ -43,13 +43,13 @@ check-git-status() {
     echo -e "\n\e[1;33m--- git log last two commits --- \e[0m"
     git log -2 --oneline
     echo "\n\e[1;33mgit status\e[0m"
-    git status -s
+    git status -s | head -n 5
   fi
 }
 
 pwd-listing() {
   # print out a short listing of the new directory
-  eza --header --long --git --classify --sort=size --color=always | head -n 10
+  eza --header --git --classify --sort=size --color=always | head -n 5
   local dircount=$(find . -maxdepth 1 -type d | wc -l)
   local filecount=$(find . -maxdepth 1 -type f | wc -l)
   local dir_string
@@ -106,13 +106,13 @@ function spoof-error () {
 }
 
 function fedora-update() {
-  echo "==> Updating Fedora systen packages..."
+  echo "==> Updating Fedora system packages..."
   sudo dnf upgrade --refresh -y || return 1
 
   if command -v flatpak >/dev/null 2>&1; then
     echo "updating Flatpak packages..."
     flatpak update -y
-    echo "cleaning up unused <flatpaks..."
+    echo "cleaning up unused flatpaks..."
     flatpak uninstall --unused -y
   fi
   echo "Updates completed."

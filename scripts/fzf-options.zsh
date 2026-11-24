@@ -6,7 +6,7 @@
 
 
 # set up the preview string for fzf
-local f_files="[[ -f {-1} ]] && batcat --color=always --line-range 1:30 {-1}"
+local f_files="[[ -f {-1} ]] && cat --color=always --line-range 1:30 {-1}"
 local f_dirs="[[ -d {-1} ]] && tree -CL 2 {-1} || ls -F {-1}"
 local f_other='head -n 20 {-1}'
 

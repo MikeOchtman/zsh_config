@@ -1,12 +1,10 @@
-#!/usr/env zsh
+#!/usr/bin/env zsh
 # autoloaded functions
 
 autoload -U edit-command-line;
 zle -N edit-command-line;
 autoload -U colors && colors
 autoload -U zsh-functions;
-autoload -U compinit && compinit
-# source $ZDOTDIR/zsh-functions/zsh-functions
 
 bindkey '^Fc' edit-command-line;
 
