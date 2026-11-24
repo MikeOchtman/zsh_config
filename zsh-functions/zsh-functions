@@ -121,12 +121,12 @@ function fedora-update() {
 
 function start-idf() {
   podman run --rm -it --userns=keep-id \
-    -v $PWD:/project:z -w /project \
+    -v $PWD:/project:z,rw -w /project \
     -v idf-ccache:/ccache \
     -e CCACHE_DIR=/ccache \
     -e IDF_CCACHE_ENABLE=1 \
     -u $(id -u) -e HOME=/tmp \
     espressif/idf:latest bash
-  }
+}
 
 
