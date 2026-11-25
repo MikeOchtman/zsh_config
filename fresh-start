@@ -1,0 +1,68 @@
+# script to quickly install most needed packages
+
+sudo apt update && sudo apt upgrade
+
+#start with zsh
+sudo apt install zsh-common zsh-doc zsh -y
+
+#and zsh quality of life
+sudo apt install zoxide fzf eza -y
+
+sudo apt install tmux -y
+
+sudo apt install neovim universal-ctags vim-scripts -y
+
+sudo apt install bat -y
+
+sudo apt install htop -y
+
+sudo apt install wireshark wireshark-doc -y
+
+
+#programming
+sudo apt install build-essential cmake make cmake-doc cmake-format ninja-build -y
+
+sudo apt install clang manpages-dev libc-devtools clang-18-doc ncurses-doc llvm-18-doc -y
+
+sudo apt install free42-nologo -y
+
+sudo apt install git git-doc git-email git-gui gitk -y
+
+# get and set up an ssh server
+sudo apt install openssh-server -y
+sudo systemctl enable --now ssh
+sudo ufw allow ssh
+my_IP=$(ip -4 -o addr show scope global | awk '{print $4}')
+echo "For SSH, this machine's IP address is " "$my_IP"
+ssh_state=$(systemctl is-active ssh)
+echo "The ssh server is $ssh_state"
+
+
+#applications from flathub
+flatpak update -y
+flatpak install flathub com.brave.Browser -y
+flatpak install flathub org.gimp.GIMP -y
+flatpak install flathub com.orcaslicer.OrcaSlicer -y
+flatpak install flathub com.obsproject.Studio -y
+flatpak install flathub org.freecad.FreeCAD -y
+
+# get VLC
+sudo apt install vlc vlc-plugin-fluidsynth vlc-plugin-jack vlc-plugin-pipewire vlc-plugin-svg libdvdcss2 fluid-soundfont-gs -y
+
+
+
+# clean up and show what space is used
+echo
+echo "============================================"
+echo
+echo "Installation and setup complete."
+echo "This is the storage attached to the computer now..."
+
+df -h
+echo
+echo "For SSH, this machine's IP address is " "$my_IP"
+ssh_state=$(systemctl is-active ssh)
+echo "The ssh server is $ssh_state"
+
+
+

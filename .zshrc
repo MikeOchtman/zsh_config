@@ -19,12 +19,13 @@ source $ZDOTDIR/scripts/options
 #source $ZDOTDIR/zsh-functions/zsh-functions
 eval "$(dircolors -b $ZDOTDIR/scripts/dircolors)"
 
-# 1. Load completions first (fpath is already set above)
-#source $ZDOTDIR/plugins/zsh-completions/zsh-completions.plugin.zsh
+#1. Load your own aliases and prompts
+source $ZDOTDIR/aliases/aliases.zsh
+
+# 2. Load completions first (fpath is already set above)
 source $ZDOTDIR/completion/completion.zsh
 
-# 2. Load your own aliases and prompts
-source $ZDOTDIR/aliases/aliases.zsh
+
 # 3. Initialize external interactive tools
 eval "$(zoxide init zsh)"
 source $ZDOTDIR/scripts/fzf-options.zsh

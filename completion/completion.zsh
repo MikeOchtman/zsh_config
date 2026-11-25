@@ -56,8 +56,8 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
 # Complete the alias when _expand_alias is used as a function
 zstyle ':completion:*' complete true
 
-zle -C alias-expension complete-word _generic
-bindkey '^Xa' alias-expension
+zle -C alias-expansion complete-word _generic
+bindkey '^Xa' alias-expansion
 zstyle ':completion:alias-expansion:*' completer _expand_alias
 
 # Use cache for commands which use it
